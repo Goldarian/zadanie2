@@ -34,6 +34,9 @@ jobs:
         push: true
         tags: goldarian/zadanie2:latest
       
+    - name: Pull arm64 image
+      run: docker pull --platform linux/arm64 goldarian/zadanie2:latest-arm64
+      
     - name: Build and push arm64 image
       uses: docker/build-push-action@v2
       with:
