@@ -112,6 +112,11 @@ function App() {
 
 export default App;
 ```
+
+Łańcuch Github Actions został uruchomiony:
+
+![image](https://github.com/Goldarian/zadanie2/assets/77618644/6f59f397-9d7e-4148-8644-b895ca7a6ac4)
+
 Nie mogłem przetestować obrazu pod kątem CVE, ponieważ pojawiał się błąd:
 
 ![image](https://github.com/Goldarian/zadanie2/assets/77618644/58f7691a-1403-437b-82f0-754e3a850a57)
