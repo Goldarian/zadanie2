@@ -31,8 +31,7 @@ jobs:
         context: .
         file: Dockerfile
         platforms: linux/amd64
-        push: true
-        tags: goldarian/zadanie2:latest
+        push: ghcr.io/${{ github.repository_owner }}/zadanie2:latest
       
     - name: Build and push arm64 image
       uses: docker/build-push-action@v2
@@ -40,13 +39,4 @@ jobs:
         context: .
         file: Dockerfile
         platforms: linux/arm64
-        push: true
-        tags: goldarian/zadanie2:latest-arm64
-    
-    - name: Set up GitHub Packages registry
-      run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
-
-    - name: Push Docker image
-      run: |
-        docker tag goldarian/zadanie2:latest ghcr.io/${{ github.repository_owner }}/zadanie2:latest
-        docker push ghcr.io/${{ github.repository_owner }}/zadanie2:latest
+        push: ghcr.io/${{ github.repository_owner }}/zadanie2:latest-arm64
