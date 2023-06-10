@@ -25,6 +25,14 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     
+    - name: Cache Docker layers
+      uses: actions/cache@v2
+      with:
+        path: /tmp/.buildx-cache
+        key: ${{ runner.os }}-docker-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-docker-
+    
     - name: Build and push x86_64 image
       uses: docker/build-push-action@v2
       with:
@@ -33,9 +41,8 @@ jobs:
         platforms: linux/amd64
         push: true
         tags: goldarian/zadanie2:latest
-      
-    - name: Pull arm64 image
-      run: docker pull --platform linux/arm64 goldarian/zadanie2:latest-arm64
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache
       
     - name: Build and push arm64 image
       uses: docker/build-push-action@v2
@@ -45,3 +52,5 @@ jobs:
         platforms: linux/arm64
         push: true
         tags: goldarian/zadanie2:latest-arm64
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache
