@@ -31,7 +31,8 @@ jobs:
         context: .
         file: Dockerfile
         platforms: linux/amd64
-        push: ghcr.io/${{ github.repository_owner }}/zadanie2:latest
+        push: true
+        tags: ghcr.io/${{ github.repository_owner }}/zadanie2:latest
       
     - name: Build and push arm64 image
       uses: docker/build-push-action@v2
@@ -39,4 +40,5 @@ jobs:
         context: .
         file: Dockerfile
         platforms: linux/arm64
-        push: ghcr.io/${{ github.repository_owner }}/zadanie2:latest-arm64
+        push: true
+        tags: ghcr.io/${{ github.repository_owner }}/zadanie2:latest-arm64
